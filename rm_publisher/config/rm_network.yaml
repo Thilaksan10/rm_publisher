@@ -1,0 +1,156 @@
+params:
+  algo:
+    name: a2c_continuous
+
+  model:
+    name: continuous_a2c_logstd
+
+  network:
+    ### MLP ###
+    name: mlp_net
+    separate: False
+    space:
+      continuous:
+        mu_activation: None
+        sigma_activation: None
+        mu_init:
+          name: default
+        sigma_init:
+          name: const_initializer
+          val: 0
+        fixed_sigma: True
+    mlp:
+      units: [512, 256, 128]
+      activation: elu
+      d2rl: False
+      initializer:
+        name: default
+      regularizer:
+        name: None
+
+    ### RMA ###
+    # name: rma
+    # separate: False
+    # space:
+    #   continuous:
+    #     mu_activation: None
+    #     sigma_activation: None
+    #     mu_init:
+    #       name: default
+    #     sigma_init:
+    #       name: const_initializer
+    #       val: 0
+    #     fixed_sigma: True
+    # mlp:
+    #   units: [ 1024, 512, 256, 128, 64 ]
+    #   dense_func: Linear
+    #   activation: elu
+    # cnn:
+    #   ctype: conv1d
+    #   activation: relu
+    #   convs:
+    #     - filters: 256
+    #       kernel_size: 5
+    #       strides: 1
+    #       padding: 0
+    #     - filters: 256
+    #       kernel_size: 5
+    #       strides: 1
+    #       padding: 0
+    #     - filters: 256
+    #       kernel_size: 5
+    #       strides: 1
+    #       padding: 0
+
+    # MLP + RNN ###
+    # name: mlp_rnn
+    # separate: False
+    # space:
+    #   continuous:
+    #     mu_activation: None
+    #     sigma_activation: None
+    #     mu_init:
+    #       name: default
+    #     sigma_init:
+    #       name: const_initializer
+    #       val: 0
+    #     fixed_sigma: True
+    # mlp:
+    #   units: [512, 256, 128]
+    #   activation: elu
+    #   d2rl: False
+    #   initializer:
+    #     name: default
+    #   regularizer:
+    #     name: None
+  
+    # rnn:
+    #   name: lstm
+    #   units: 512
+    #   layers: 1
+    #   before_mlp: True
+    #   layer_norm: True
+
+    ### RMA mit TCN ###
+    # name: rma_tcn
+    # separate: False
+    # space:
+    #   continuous:
+    #     mu_activation: None
+    #     sigma_activation: None
+    #     mu_init:
+    #       name: default
+    #     sigma_init:
+    #       name: const_initializer
+    #       val: 0
+    #     fixed_sigma: True
+    # mlp:
+    #   units: [512, 256, 128]
+    #   dense_func: Linear
+    #   activation: elu
+    # tcn:
+    #   num_channels: [512, 512, 512]   
+    #   kernel_size: 5                  
+    #   dilations: [1, 2, 4]            
+    #   dropout: 0.1             
+    #   causal: True                    
+    #   use_norm: weight_norm        
+    #   activation: relu                
+    #   use_skip_connections: False
+    #   input_shape: NCL          
+
+  load_checkpoint: False
+  load_path: nn/Robomaster.pth
+
+  config:
+    name: 'Robomaster'
+    env_name : rlgpu
+    device_type: cuda
+    ppo: True
+    mixed_precision: False
+    normalize_input: True
+    normalize_value: True
+    reward_shaper:
+      scale_value: 0.1
+    normalize_advantage: True
+    gamma: 0.99
+    tau: 0.95
+    learning_rate: 3e-4
+    lr_schedule: adaptive
+    kl_threshold: 0.008
+    score_to_win: 100000
+    max_epochs: 10000
+    save_best_after: 25
+    save_frequency: 500
+    grad_norm: 1.0
+    entropy_coef: 0.0
+    truncate_grads: True
+    e_clip: 0.2
+    horizon_length: 48
+    minibatch_size: 4096
+    mini_epochs: 4
+    critic_coef: 4
+    clip_value: True
+    seq_len: 4
+    bounds_loss_coef: 0.0001
+
