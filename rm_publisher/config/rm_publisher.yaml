@@ -1,0 +1,51 @@
+robomaster:
+  numRms : 1
+  name: 'ep05'
+  maxLinearVelocity: 2.5
+  maxAngularVelocity: 2.5
+  maxWheel: 100
+  minVelocity: 0.1
+  actionScale: 0.1
+  initialPosition: [0,2,0]
+  initialRotation: [0,0,0,1]
+  publish: True
+  offset: True
+  trajectory: True
+  use_actions: False
+  wheel: False
+  playback_cmd: False
+
+scales:
+  linearVelocityXScale: 2.5
+  linearVelocityYScale: 2.5
+  angularVelocityScale: 2.5
+
+map:
+  mapSize: 6
+  cellSize: 0.4
+  boundarySize: 3
+  useInterpolated: False
+  enableDebugVis: False
+  episodeLength: 250
+  racetrack: True
+  
+model:
+  frameStack: 1
+  actionObsHistory: 50
+  actionSize: 4
+  obsSize: 19
+  path: 'rm_publisher/nn/Racetrack_offset_0_false.pth'
+
+racetrack:
+  frameStack: 1
+  actionObsHistory: 50
+  actionSize: 3
+  obsSize: 14
+  path: 'rm_publisher/nn/Racetrack.pth'
+
+
+data:
+  record_bag: False
+  record_normal: False
+  steps: 25000
+  bag: False

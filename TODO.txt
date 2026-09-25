@@ -1,0 +1,7 @@
+1. Ausmisten (auskommentierten Code löschen, reset)
+2. reset, reward, boundaries, map korrekt ausrichten
+3. Velocity fields überprüfen ob wie im rl repo
+4. observation space checken inkl. plotten von observation dimension (ang. vel)
+5. add neural networks (complete nn-folder) and all auto-generated folders from vscode etc. to gitignore
+6. restructure __init__: all fields that are constants to the top, fields for obs_dim, obs_history_dim, actions, etc., field for robomaster (e.g. "ep10")
+7. update instructions for vicon (comments before class), including turning the vicon system on/off. @Ibrahim is the bug still existing?

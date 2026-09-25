@@ -1,0 +1,11 @@
+__pycache__/
+.vscode
+old_runs/
+nn/
+rm_publisher.egg-info/
+.idea/
+action_ranges.txt
+/data
+/bags
+/old
+/old_bags
